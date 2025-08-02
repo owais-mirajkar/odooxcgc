@@ -19,16 +19,21 @@ and support teams without unnecessary complexity.
     'category': 'Customer Relationship Management',
     'version': '1.0',
 
+<<<<<<< Updated upstream
     'depends': ['base'],
+=======
+    # any module necessary for this one to work correctly
+    'depends': ['base', 'mail'],
+>>>>>>> Stashed changes
 
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        # 'views/views.xml',
+        # 'views/templates.xml',
     ],
 
     'demo': [
-        'demo/demo.xml',
+        # 'demo/demo.xml',
     ],
 
     'application': True,

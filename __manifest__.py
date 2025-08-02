@@ -23,8 +23,10 @@ and support teams without unnecessary complexity.
 
     'data': [
         'security/ir.model.access.csv',
-        # 'views/views.xml',
-        # 'views/templates.xml',
+        'security/security_rules.xml',
+        'data/sequence.xml',
+        'views/ticket_views.xml',
+        'views/menu.xml',
     ],
 
     'demo': [

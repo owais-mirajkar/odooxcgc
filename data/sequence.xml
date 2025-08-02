@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="seq_quickdesk_ticket" model="ir.sequence">
+        <field name="name">Support Ticket Sequence</field>
+        <field name="code">quickdesk.ticket</field>
+        <field name="prefix">TCKT/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+        <field name="implementation">standard</field>
+    </record>
+</odoo>

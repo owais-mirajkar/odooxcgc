@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="quickdesk_category_form_view" model="ir.ui.view">
+        <field name="name">quickdesk.category.form</field>
+        <field name="model">quickdesk.category</field>
+        <field name="arch" type="xml">
+            <form string="Categories">
+                <sheet>
+                   <div class="oe_title">
+                       <h1>
+                           <field name="name" class="oe_inline" placeholder="Category Name"/>
+                       </h1>
+                       <h2>
+                           <field name="description" placeholder="Enter Category Description..." class="oe_inline"/>
+                       </h2>
+                   </div>
+                   <group class="oe_clean_content_section">
+                       <group class="oe_left_group">
+                           <group string="Basic Information">
+                               <field name="team_id" string="Assigned Team"/>
+                           </group>
+                       </group>
+                       <group class="oe_right_group"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="quickdesk_category_list_view" model="ir.ui.view">
+        <field name="name">quickdesk.category.tree</field>
+        <field name="model">quickdesk.category</field>
+        <field name="arch" type="xml">
+            <list string="Categories">
+                <field name="name"/>
+                <field name="team_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="quickdesk_category_search_view" model="ir.ui.view">
+        <field name="name">quickdesk.category.search</field>
+        <field name="model">quickdesk.category</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="team_id"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_team" string="Team" context="{'group_by':'team_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_quickdesk_category" model="ir.actions.act_window">
+        <field name="name">Categories</field>
+        <field name="res_model">quickdesk.category</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first category</p>
+        </field>
+    </record>
+</odoo>

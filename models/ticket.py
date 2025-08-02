@@ -28,6 +28,7 @@ class Ticket(models.Model):
     downvotes = fields.Integer(string='Downvotes', default=0)
     attachment_ids = fields.One2many('ir.attachment', 'res_id', domain=[('res_model', '=', 'quickdesk.ticket')], string='Attachments')
     color = fields.Integer(string='Color Index')
+    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     
     def action_upvote(self):
         self.upvotes += 1

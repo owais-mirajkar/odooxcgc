@@ -19,7 +19,7 @@ and support teams without unnecessary complexity.
     'category': 'Customer Relationship Management',
     'version': '1.0',
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail', 'portal'],
 
     'data': [
         'security/ir.model.access.csv',
@@ -29,6 +29,7 @@ and support teams without unnecessary complexity.
         'views/category_views.xml',
         'views/team_views.xml',
         'views/menu.xml',
+        'views/portal_my_tickets.xml'
     ],
 
     'demo': [

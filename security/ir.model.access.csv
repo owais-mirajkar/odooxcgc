@@ -1,5 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_quickdesk_ticket_user,quickdesk.ticket.user,model_quickdesk_ticket,base.group_user,1,1,1,1
+access_quickdesk_ticket_portal,quickdesk.ticket.portal,model_quickdesk_ticket,base.group_portal,1,1,1,1
+
 access_quickdesk_category_user,quickdesk.category.user,model_quickdesk_category,base.group_user,1,1,1,1
+
 access_quickdesk_team_user,quickdesk.team.user,model_quickdesk_team,base.group_user,1,1,1,1
+
 access_quickdesk_comment_user,quickdesk.comment.user,model_quickdesk_comment,base.group_user,1,1,1,1
+
+access_quickdesk_ticket_public,quickdesk.ticket.public,model_quickdesk_ticket,base.group_public,1,1,1,1

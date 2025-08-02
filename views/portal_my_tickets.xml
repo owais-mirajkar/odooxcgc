@@ -7,7 +7,8 @@
 
                 <t t-call="portal.portal_searchbar">
                     <t t-set="title">Tickets</t>
-                    <a class="btn btn-primary" href="#" role="button">Ask</a>
+                    <a class="btn btn-primary" href="#" role="button">Dashboard</a>
+                    <a class="btn btn-primary" href="/ask" role="button">Ask</a>
                 </t>
                 
                 <div t-if="not grouped_tickets" class="alert alert-info">
@@ -200,13 +201,17 @@
                                     <span t-esc="dict(ticket._fields['priority'].selection).get(ticket.priority)"/>
                                 </div>
                             </div>
-                            
-                            <div class="row mb-4" t-if="ticket.category_id">
-                                <div class="col-lg-12">
-                                    <strong>Category:</strong>
-                                    <span t-esc="ticket.category_id.name"/>
+
+                                <div class="row mb-4" t-if="ticket.category_ids">
+                                    <div class="col-lg-12">
+                                        <strong>Categories:</strong>
+                                        <t t-foreach="ticket.category_ids" t-as="category">
+                                            <span class="badge bg-secondary mx-1"
+                                                t-esc="category.name" />
+                                        </t>
+                                    </div>
                                 </div>
-                            </div>
+
                             
                             <div t-if="ticket.description" id="description_section" class="row mt-4" data-anchor="true">
                                 <div class="col-lg-12">

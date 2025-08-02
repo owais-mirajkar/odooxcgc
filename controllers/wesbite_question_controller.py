@@ -14,6 +14,7 @@ class WebsiteTicketController(http.Controller):
     def submit_ticket(self, **post):
         category_ids = request.httprequest.form.getlist('category_ids')
         ticket_vals = {
+            'number': request.env['ir.sequence'].sudo().next_by_code('quickdesk.ticket'),
             'name': post.get('question'),
             'description': post.get('description'),
             'category_ids': [(6, 0, list(map(int, category_ids)))],

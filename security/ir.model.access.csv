@@ -3,9 +3,16 @@ access_quickdesk_ticket_user,quickdesk.ticket.user,model_quickdesk_ticket,base.g
 access_quickdesk_ticket_portal,quickdesk.ticket.portal,model_quickdesk_ticket,base.group_portal,1,1,1,1
 
 access_quickdesk_category_user,quickdesk.category.user,model_quickdesk_category,base.group_user,1,1,1,1
+access_quickdesk_category_portal,quickdesk.category.portal,model_quickdesk_category,base.group_portal,1,1,1,1
+access_quickdesk_category_public,quickdesk.category.public,model_quickdesk_category,base.group_public,1,1,1,1
+
 
 access_quickdesk_team_user,quickdesk.team.user,model_quickdesk_team,base.group_user,1,1,1,1
+access_quickdesk_team_portal,quickdesk.team.portal,model_quickdesk_team,base.group_portal,1,1,1,1
+access_quickdesk_team_public,quickdesk.team.public,model_quickdesk_team,base.group_public,1,1,1,1
 
 access_quickdesk_comment_user,quickdesk.comment.user,model_quickdesk_comment,base.group_user,1,1,1,1
+access_quickdesk_comment_portal,quickdesk.comment.portal,model_quickdesk_comment,base.group_portal,1,1,1,1
+access_quickdesk_comment_public,quickdesk.comment.public,model_quickdesk_comment,base.group_public,1,1,1,1
 
 access_quickdesk_ticket_public,quickdesk.ticket.public,model_quickdesk_ticket,base.group_public,1,1,1,1

@@ -33,7 +33,7 @@
                         <field name="name"/>
                         <field name="description" widget="html"/>
                         <field name="category_ids" widget="many2many_tags"/>
-                        <field name="team_id"/>
+                        <!-- <field name="team_id"/> -->
                         <field name="user_id" readonly="1"/>
                         <field name="partner_id"/>
                         <field name="assigned_to"/>

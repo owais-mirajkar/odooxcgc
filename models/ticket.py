@@ -51,3 +51,26 @@ class Ticket(models.Model):
         
     def action_reopen(self):
         self.state = 'new'
+    
+    @api.model
+    def create(self, vals):
+        ticket = super(Ticket, self).create(vals)
+        ticket._assign_first_team_member()
+        return ticket
+
+    def write(self, vals):
+        res = super(Ticket, self).write(vals)
+        if 'category_ids' in vals:
+            for ticket in self:
+                ticket._assign_first_team_member()
+        return res
+
+    def _assign_first_team_member(self):
+        """Assign the first available team member from the category's team."""
+        if self.category_ids:
+            first_category = self.category_ids[0]
+            team = first_category.team_id
+            if team and team.member_ids:
+                self.assigned_to = team.member_ids[0]
+
+    

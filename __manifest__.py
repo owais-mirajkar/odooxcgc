@@ -29,7 +29,8 @@ and support teams without unnecessary complexity.
         'views/category_views.xml',
         'views/team_views.xml',
         'views/menu.xml',
-        'views/portal_my_tickets.xml'
+        'views/portal_my_tickets.xml',
+        'views/ask_a_question_template.xml',
     ],
 
     'demo': [

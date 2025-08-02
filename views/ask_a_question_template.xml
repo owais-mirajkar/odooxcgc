@@ -1,0 +1,38 @@
+<odoo>
+    <template id="ask_ticket_template" name="Ask Ticket Template">
+        <t t-call="website.layout">
+            <div class="container py-5 text-white" style="background-color:#111;">
+                <div class="card p-4" style="background-color:#9c4e85; border-radius:15px;">
+                    <h2>Ask Your Question</h2>
+                    <form action="/submit/ticket" method="POST">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+
+                        <div class="form-group">
+                            <label for="question">Question</label>
+                            <input type="text" name="question" required="required"
+                                class="form-control" />
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="description">Description</label>
+                            <textarea name="description" class="form-control" rows="5"></textarea>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="category_ids">Tags (Categories)</label>
+                            <select name="category_ids" multiple="multiple" class="form-control">
+                                <t t-foreach="categories" t-as="category">
+                                    <option t-att-value="category.id">
+                                        <t t-esc="category.name" />
+                                    </option>
+                                </t>
+                            </select>
+                            <small class="text-light">Hold Ctrl (or Cmd) to select multiple</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Post</button>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

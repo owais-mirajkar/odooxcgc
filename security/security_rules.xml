@@ -4,7 +4,14 @@
         <record id="quickdesk_ticket_user_rule" model="ir.rule">
             <field name="name">Ticket User Rule</field>
             <field name="model_id" ref="model_quickdesk_ticket"/>
-            <field name="domain_force">['|',('user_id','=',user.id),('assigned_to','=',user.id)]</field>
+            <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="quickdesk_ticket_agent_rule" model="ir.rule">
+            <field name="name">Ticket Agent Rule</field>
+            <field name="model_id" ref="model_quickdesk_ticket"/>
+            <field name="domain_force">[('assigned_to','=',user.id)]</field>
             <field name="groups" eval="[(4, ref('base.group_user'))]"/>
         </record>
         

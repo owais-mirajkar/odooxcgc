@@ -9,7 +9,7 @@ class Ticket(models.Model):
     name = fields.Char(string='Subject', required=True)
     description = fields.Html(string='Description')
     number = fields.Char(string='Ticket Number', readonly=True, default=lambda self: self.env['ir.sequence'].next_by_code('quickdesk.ticket'))
-    category_id = fields.Many2one('quickdesk.category', string='Category')
+    category_ids = fields.Many2many('quickdesk.category', string='Categories')
     team_id = fields.Many2one('quickdesk.team', string='Support Team')
     user_id = fields.Many2one('res.users', string='Created By', default=lambda self: self.env.user)
     partner_id = fields.Many2one('res.partner', string='Customer')

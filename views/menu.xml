@@ -19,5 +19,8 @@
               parent="menu_quickdesk_configuration"
               action="quickdesk.action_quickdesk_category"/>
 
-    <!-- <menuitem id="menu_quickdesk_teams" name="Teams" parent="menu_quickdesk_configuration" action="action_team"/> -->
+    <menuitem id="menu_quickdesk_teams" 
+              name="Teams" 
+              parent="menu_quickdesk_configuration" 
+              action="quickdesk.action_quickdesk_team"/>
 </odoo>

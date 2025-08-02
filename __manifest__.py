@@ -27,6 +27,7 @@ and support teams without unnecessary complexity.
         'data/sequence.xml',
         'views/ticket_views.xml',
         'views/category_views.xml',
+        'views/team_views.xml',
         'views/menu.xml',
     ],
 

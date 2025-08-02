@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_quickdesk_comment_tree" model="ir.ui.view">
+        <field name="name">quickdesk.comment.tree</field>
+        <field name="model">quickdesk.comment</field>
+        <field name="arch" type="xml">
+            <list string="Comments">
+                <field name="ticket_id"/>
+                <field name="user_id"/>
+                <field name="content"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_quickdesk_comment_form" model="ir.ui.view">
+        <field name="name">quickdesk.comment.form</field>
+        <field name="model">quickdesk.comment</field>
+        <field name="arch" type="xml">
+            <form string="Comments">
+                <sheet>
+                    <group>
+                        <field name="ticket_id" string="Ticket"/>
+                        <field name="user_id" string="User"/>
+                        <field name="content" string="Content" widget="html"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_quickdesk_ticket_comment" model="ir.actions.act_window">
+        <field name="name">Comments</field>
+        <field name="res_model">quickdesk.ticket.comment</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

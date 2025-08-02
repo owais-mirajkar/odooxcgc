@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_quick_desk_quick_desk,quick_desk.quick_desk,model_quick_desk_quick_desk,base.group_user,1,1,1,1

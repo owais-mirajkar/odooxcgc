@@ -10,6 +10,9 @@ from odoo.addons.portal.controllers import portal
 from odoo.addons.portal.controllers.portal import pager as portal_pager
 from odoo.osv.expression import AND, OR
 from odoo.exceptions import AccessError, MissingError
+import json
+from collections import defaultdict
+
 
 class QuickDesk(portal.CustomerPortal):
     def _ticket_get_page_view_values(self, ticket, access_token, **kwargs):
@@ -173,3 +176,39 @@ class QuickDesk(portal.CustomerPortal):
             return request.redirect(f'/my/quickdesk/tickets/{ticket_id}?ticket_closed=1')
         except (AccessError, MissingError):
             return request.redirect('/my')
+
+    @route('/my/quickdesk/dashboard/<int:user_id>', type='http', auth='user', website=True)
+    def render_graph_template(self, user_id, **kwargs):
+        env = request.env
+
+        # 1. Tickets by User
+        user_ticket_data = env['quickdesk.ticket'].sudo().read_group(
+            [('user_id', '!=', False),  ('user_id', '=', user_id)],
+            ['user_id'],
+            ['user_id']
+        )
+        user_data = [(rec['user_id'][1], rec['user_id_count']) for rec in user_ticket_data]
+
+        # 2. Comments Count per Ticket
+        comment_data = env['quickdesk.ticket'].sudo().search_read(
+            [('user_id', '=', user_id)], ['number', 'comments_count']
+        )
+
+        # 3. Tickets by Category
+        tickets = env['quickdesk.ticket'].sudo().search([('user_id', '=', user_id)])
+
+        category_counter = defaultdict(int)
+        for ticket in tickets:
+            for category in ticket.category_ids:
+                category_counter[category.name] += 1
+
+        category_data = list(category_counter.items())
+
+        return request.render('quickdesk.quickdesk_graph_template', {
+            'user_labels': json.dumps([rec[0] for rec in user_data]),
+            'user_counts': json.dumps([rec[1] for rec in user_data]),
+            'ticket_labels': json.dumps([rec['number'] for rec in comment_data]),
+            'comment_counts': json.dumps([rec['comments_count'] for rec in comment_data]),
+            'category_labels': json.dumps([name for name, count in category_data]),
+            'category_counts': json.dumps([count for name, count in category_data]),
+        })

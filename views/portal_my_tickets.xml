@@ -7,7 +7,7 @@
 
                 <t t-call="portal.portal_searchbar">
                     <t t-set="title">Tickets</t>
-                    <a class="btn btn-primary" href="#" role="button">Dashboard</a>
+                    <a class="btn btn-primary" href="/my/quickdesk/dashboard" role="button">Dashboard</a>
                     <a class="btn btn-primary" href="/ask" role="button">Ask</a>
                 </t>
                 

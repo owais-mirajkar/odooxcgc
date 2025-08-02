@@ -177,9 +177,10 @@ class QuickDesk(portal.CustomerPortal):
         except (AccessError, MissingError):
             return request.redirect('/my')
 
-    @route('/my/quickdesk/dashboard/<int:user_id>', type='http', auth='user', website=True)
-    def render_graph_template(self, user_id, **kwargs):
+    @route('/my/quickdesk/dashboard', type='http', auth='user', website=True)
+    def render_graph_template(self, **kwargs):
         env = request.env
+        user_id = env.user.id
 
         # 1. Tickets by User
         user_ticket_data = env['quickdesk.ticket'].sudo().read_group(

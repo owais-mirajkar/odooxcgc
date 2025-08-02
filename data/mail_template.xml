@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="email_template_role_approval_request" model="mail.template">
+        <field name="name">Role Upgrade Approval Request</field>
+        <field name="model_id" ref="base.model_res_users"/>
+        <field name="email_from">${object.company_id.email or ''}</field>
+        <field name="subject">Action Required: Role Upgrade Request from ${ctx.get('requesting_user').name}</field>
+        <field name="body_html">
+            <div>
+                <p>Dear ${object.name},</p>
+                <p>
+                    User <strong>${ctx.get('requesting_user').name}</strong> has requested 
+                    to be upgraded to <strong>${ctx.get('requested_role')}</strong> role.
+                </p>
+                <p>
+                    <a href="${ctx.get('approval_url')}">Click here to approve this request</a>
+                </p>
+            </div>
+        </field>
+    </record>
+</odoo>

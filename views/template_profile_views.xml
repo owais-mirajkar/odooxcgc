@@ -35,11 +35,22 @@
                                     <label class="col-md-4 col-form-label">Role:</label>
                                     <div class="col-md-8">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="role"/>
+                                            <select class="form-control" name="role">
+                                                <option t-foreach="[
+                                                    ('user', 'User'),
+                                                    ('support_agent', 'Support Agent'),
+                                                    ('admin', 'Admin')
+                                                ]" 
+                                                t-as="role_option" 
+                                                t-att-value="role_option"
+                                                >
+                                                    <t t-esc="role_option[1]"/>
+                                                </option>
+                                            </select>
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-primary" type="button">
+                                                <a href="/my/upgrade_role" class="btn btn-outline-primary" role="button">
                                                     <i class="fa fa-arrow-up"></i> Upgrade
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -54,16 +65,15 @@
                                             </option>
                                         </t>
                                     </select>
+                                    <small class="text-light">Hold Ctrl (or Cmd) to select multiple</small>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <label class="col-md-4 col-form-label">Change Language:</label>
                                     <div class="col-md-8">
-                                        <select class="form-control">
-                                            <option t-foreach="available_languages" t-as="lang" t-att-value="lang[0]">
-                                                <t t-esc="lang[1]"/>
-                                            </option>
-                                        </select>
+                                        <div class="col-md-8">
+                                        <input type="text" class="form-control" t-att-value="language_option"/>
+                                        </div>
                                     </div>
                                 </div>
                                 

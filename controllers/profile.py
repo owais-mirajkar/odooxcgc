@@ -7,9 +7,13 @@ class QuickDeskProfile(http.Controller):
     def _prepare_portal_layout_values(self):
         user = request.env.user
         category = request.env['quickdesk.category'].search([])
+        role = user.role
+        language = user.lang
         return {
             'user_name': user.name,
             'categories': category,
+            'role_option': role,
+            'language_option': language,
             'page_name': 'home',
         }
         
@@ -18,32 +22,33 @@ class QuickDeskProfile(http.Controller):
         values = self._prepare_portal_layout_values()
         return request.render("quickdesk.custom_profile_template", values)
 
-    @route('/my/upgrade_role', type='json', auth="user")
-    def upgrade_role(self, **post):
+    @http.route('/my/upgrade_role', type='http', auth="user", website=True)
+    def request_role_upgrade(self, requested_role, **post):
         user = request.env.user
-        current_role = user.role
-        role_level = user.role_level or 1
         
-        # Define your role upgrade path
-        role_mapping = {
-            1: "Basic User",
-            2: "Advanced User",
-            3: "Premium User", 
-            4: "Admin"
-        }
+        if requested_role not in ['support_agent', 'admin']:
+            return request.redirect('/my?error=Invalid+role+request')
         
-        if role_level < len(role_mapping):
-            user.write({
-                'role_level': role_level + 1,
-                'role': role_mapping.get(role_level + 1)
-            })
-            return {
-                'success': True,
-                'new_role': user.role,
-                'message': 'Role upgraded successfully!'
-            }
-        else:
-            return {
-                'success': False,
-                'message': 'You already have the highest role!'
-            }
+        if user.role_upgrade_request == 'pending':
+            return request.redirect('/my?error=You+already+have+a+pending+request')
+        
+        user.write({
+            'role_upgrade_request': 'pending',
+            'requested_role': requested_role
+        })
+        
+        self._send_approval_request(user, requested_role)
+        
+        return request.redirect('/my?success=Upgrade+request+submitted')
+
+    def _send_approval_request(self, user, requested_role):
+        template = request.env.ref('quickdesk.email_template_role_approval_request')
+        manager_group = request.env.ref('base.group_erp_manager')
+        managers = request.env['res.users'].search([('groups_id', 'in', manager_group.ids)])
+        
+        for manager in managers:
+            template.with_context({
+                'requesting_user': user,
+                'requested_role': requested_role,
+                'approval_url': f"{request.httprequest.host_url}my/approve_role_upgrade/{user.id}"
+            }).send_mail(manager.id, force_send=True)

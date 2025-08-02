@@ -21,7 +21,7 @@
         <field name="name">quickdesk.ticket.form</field>
         <field name="model">quickdesk.ticket</field>
         <field name="arch" type="xml">
-            <form string="Support Ticket" class="o_form">
+            <form string="Support Ticket" class="o_form" create="0">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="action_upvote" type="object" string="Upvote" class="btn-primary"/>

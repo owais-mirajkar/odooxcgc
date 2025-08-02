@@ -7,7 +7,7 @@
             <list>
                 <field name="name"/>
                 <field name="member_ids" widget="many2many_tags"/>
-                <field name="color"/>
+                <field name="color" widget="color_picker"/>
             </list>
         </field>
     </record>
@@ -20,7 +20,7 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="color"/>
+                        <field name="color" string="Color" widget="color_picker"/>
                         <field name="member_ids" widget="many2many_tags"/>
                         <field name="category_ids" widget="one2many"/>
                     </group>

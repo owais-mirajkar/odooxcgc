@@ -31,6 +31,7 @@ and support teams without unnecessary complexity.
         'views/menu.xml',
         'views/portal_my_tickets.xml',
         'views/ask_a_question_template.xml',
+        'views/template_profile_views.xml',
     ],
 
     'demo': [

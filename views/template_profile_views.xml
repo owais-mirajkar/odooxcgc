@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="my_profile_link" name="Link to frontend portal" inherit_id="portal.user_dropdown">
+        <xpath expr="//*[@id='o_logout_divider']" position="before">
+            <div id="o_logout_divider" class="dropdown-divider"></div>
+            <a href="/my/profile" role="menuitem" class="dropdown-item ps-3">
+                <i class="fa fa-fw fa-id-card-o me-1 small text-primary text-primary-emphasis"/> My Profile
+            </a>
+        </xpath>
+    </template>
+
+<template id="custom_profile_template">
+    <t t-call="portal.portal_layout">
+        <div class="o_user_profile container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-4">
+                    <h2>Profile</h2>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <form class="oe_form">
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">Name:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" t-att-value="user_name"/>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">Role:</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="role"/>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button">
+                                                    <i class="fa fa-arrow-up"></i> Upgrade
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">Category In interest:</label>
+                                    <select name="category_ids" multiple="multiple" class="form-control">
+                                        <t t-foreach="categories" t-as="category">
+                                            <option t-att-value="category.id">
+                                                <t t-esc="category.name" />
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">Change Language:</label>
+                                    <div class="col-md-8">
+                                        <select class="form-control">
+                                            <option t-foreach="available_languages" t-as="lang" t-att-value="lang[0]">
+                                                <t t-esc="lang[1]"/>
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <div class="col-md-8 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
+</odoo>

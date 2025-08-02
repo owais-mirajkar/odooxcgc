@@ -1,0 +1,89 @@
+<odoo>
+    <template id="quickdesk_graph_template" name="Quickdesk Ticket Graphs">
+        <t t-call="portal.portal_layout">
+            <div class="container my-5">
+                <h2 class="text-center mb-4">Quickdesk Analytics</h2>
+
+                <!-- Questions Asked -->
+                <h4>Questions Asked (Tickets per User)</h4>
+                <canvas id="userTicketChart" width="400" height="200"></canvas>
+
+                <!-- Comments Per Ticket -->
+                <h4 class="mt-5">Comments Per Ticket</h4>
+                <canvas id="commentChart" width="400" height="200"></canvas>
+
+                <!-- Tickets by Category -->
+                <h4 class="mt-5">Tickets by Category</h4>
+                <canvas id="categoryChart" width="400" height="200"></canvas>
+            </div>
+            <script type="application/json" id="user_labels"><t t-raw="user_labels"/></script>
+            <script type="application/json" id="user_counts"><t t-raw="user_counts"/></script>
+
+            <script type="application/json" id="ticket_labels"><t t-raw="ticket_labels"/></script>
+            <script type="application/json" id="comment_counts"><t t-raw="comment_counts"/></script>
+
+            <script type="application/json" id="category_labels"><t t-raw="category_labels"/></script>
+            <script type="application/json" id="category_counts"><t t-raw="category_counts"/></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+
+                    function getJson(id) {
+                        return JSON.parse(document.getElementById(id).textContent);
+                      }
+
+                    // Questions Asked Chart
+                    const userLabels = getJson("user_labels");
+                    const userCounts = getJson("user_counts");
+
+                    new Chart(document.getElementById('userTicketChart'), {
+                        type: 'bar',
+                        data: {
+                            labels: userLabels,
+                            datasets: [{
+                                label: 'Tickets',
+                                data: userCounts,
+                                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            }]
+                        },
+                        options: { responsive: true }
+                    });
+
+                    // Comments Per Ticket
+                    const ticketLabels = getJson("ticket_labels");
+                    const commentCounts = getJson("comment_counts");
+
+                    new Chart(document.getElementById('commentChart'), {
+                        type: 'bar',
+                        data: {
+                            labels: ticketLabels,
+                            datasets: [{
+                                label: 'Comments',
+                                data: commentCounts,
+                                backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                            }]
+                        },
+                        options: { responsive: true }
+                    });
+
+                    // Tickets by Category
+                    const categoryLabels = getJson("category_labels");
+                    const categoryCounts = getJson("category_counts");
+
+                    new Chart(document.getElementById('categoryChart'), {
+                        type: 'bar',
+                        data: {
+                            labels: categoryLabels,
+                            datasets: [{
+                                label: 'Tickets',
+                                data: categoryCounts,
+                                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            }]
+                        },
+                        options: { responsive: true }
+                    });
+                });
+            </script>
+        </t>
+    </template>
+</odoo>

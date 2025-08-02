@@ -30,7 +30,15 @@ class Ticket(models.Model):
     color = fields.Integer(string='Color Index')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
     comment_ids = fields.One2many('quickdesk.comment', 'ticket_id', string='Comments')
-    
+
+    # Computed fields for the graphs
+    comments_count = fields.Integer(compute='_compute_comments_data', store=True)
+
+    @api.depends('comment_ids')
+    def _compute_comments_data(self):
+        for record in self:
+            record.comments_count = len(record.comment_ids)
+
     def action_upvote(self):
         self.upvotes += 1
         

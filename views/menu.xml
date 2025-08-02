@@ -1,9 +1,23 @@
 <odoo>
-    <menuitem id="menu_quickdesk_root" name="QuickDesk" sequence="10" web_icon="odooxcgc,static/description/icon.png"/>
+    <menuitem id="menu_quickdesk_root"
+              name="QuickDesk"
+              sequence="10"
+              web_icon="odooxcgc,static/description/icon.png"/>
     
-    <menuitem id="menu_quickdesk_tickets" name="Tickets" parent="menu_quickdesk_root" action="odooxcgc.action_quickdesk_ticket"/>
+    <menuitem id="menu_quickdesk_tickets"
+              name="Tickets"
+              parent="menu_quickdesk_root"
+              action="odooxcgc.action_quickdesk_ticket"/>
     
-    <!-- <menuitem id="menu_quickdesk_configuration" name="Configuration" parent="menu_quickdesk_root" sequence="20"/> -->
-    <!-- <menuitem id="menu_quickdesk_categories" name="Categories" parent="menu_quickdesk_configuration" action="action_category"/> -->
+    <menuitem id="menu_quickdesk_configuration"
+               name="Configuration"
+               parent="menu_quickdesk_root"
+               sequence="20"/>
+
+    <menuitem id="menu_quickdesk_categories"
+              name="Categories"
+              parent="menu_quickdesk_configuration"
+              action="odooxcgc.action_quickdesk_category"/>
+
     <!-- <menuitem id="menu_quickdesk_teams" name="Teams" parent="menu_quickdesk_configuration" action="action_team"/> -->
 </odoo>

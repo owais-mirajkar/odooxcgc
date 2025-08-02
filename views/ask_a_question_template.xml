@@ -1,6 +1,6 @@
 <odoo>
     <template id="ask_ticket_template" name="Ask Ticket Template">
-        <t t-call="website.layout">
+        <t t-call="portal.portal_layout">
             <div class="container py-5">
                 <div class="card shadow p-5" style="border-radius: 15px; background-color: #ffffff;">
                     <h2 class="mb-4 text-center" style="color: #9c4e85;">Ask Your Question</h2>

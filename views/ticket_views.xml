@@ -43,6 +43,17 @@
                         <field name="downvotes" readonly="1"/>
                         <field name="attachment_ids" widget="many2many_binary"/>
                     </group>
+                    <notebook>
+                        <page name="comments" string="Comments">
+                            <field name="comment_ids">
+                                <list>
+                                    <field name="user_id"/>
+                                    <field name="content" widget="html"/>
+                                    <field name="is_internal"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
